@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📋 Projeto – Lista de Tarefas com Next.js
 
-## Getting Started
+Este projeto foi desenvolvido como **Projeto de Disciplina da Pós-Graduação**, com o objetivo de aplicar, de forma prática, os conceitos aprendidos sobre **Next.js**, **rotas**, **autenticação**, **API Routes**, **Server Side** e **deploy em ambiente serverless**.
 
-First, run the development server:
+A aplicação consiste em um **sistema de lista de tarefas (To-Do App)**, onde usuários podem se cadastrar, realizar login e gerenciar suas próprias tarefas de forma segura.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js (App Router)**
+- **React**
+- **JavaScript**
+- **Tailwind CSS**
+- **Prisma ORM**
+- **SQLite** (ambiente de desenvolvimento)
+- **JWT (JSON Web Token)** para autenticação
+- **Cookies HTTP Only**
+- **Vercel** (deploy)
+- **GitHub** (versionamento)
+
+---
+
+## 🧱 Arquitetura da Aplicação
+
+- Aplicação construída com **Next.js App Router**
+- Separação clara entre:
+  - **Pages**
+  - **Componentes**
+  - **API Routes**
+  - **Camada de autenticação**
+- Uso de **Server Components** e **Client Components**
+- Banco de dados relacional gerenciado pelo **Prisma ORM**
+
+---
+
+## 🔐 Autenticação e Segurança
+
+- Cadastro de usuários com **hash de senha (bcrypt)**
+- Login com geração de **JWT**
+- Token armazenado em **cookie httpOnly**
+- Sessão segura baseada em cookies
+- Proteção de rotas com **Middleware do Next.js**
+- Endpoints da API acessíveis **somente por usuários autenticados**
+
+---
+
+## 🗂 Funcionalidades do Sistema
+
+### 👤 Usuário
+- Cadastro de usuário
+- Login
+- Logout
+- Sessão persistente via cookie
+
+### ✅ Tarefas
+- Criar nova tarefa
+- Listar tarefas do usuário logado
+- Marcar tarefa como concluída / não concluída
+- Excluir tarefa
+- Visualizar detalhes da tarefa em **rota dinâmica**
+
+---
+
+## 🧭 Rotas da Aplicação
+
+### Rotas Públicas
+- `/` – Página inicial
+- `/register` – Cadastro de usuário
+- `/login` – Login
+
+### Rotas Protegidas
+- `/tasks` – Lista de tarefas do usuário autenticado
+- `/tasks/[id]` – Detalhes da tarefa (rota dinâmica)
+- `/profile` – Página server-side com leitura segura de cookies
+
+---
+
+## 🔁 API Routes
+
+### Autenticação
+- `POST /api/auth/register` – Cadastro de usuário
+- `POST /api/auth/login` – Login
+- `POST /api/auth/logout` – Logout
+- `GET /api/auth/me` – Verifica usuário autenticado
+
+### Tarefas (Protegidas)
+- `GET /api/tasks` – Lista tarefas do usuário
+- `POST /api/tasks` – Cria nova tarefa
+- `PATCH /api/tasks` – Atualiza status da tarefa
+- `DELETE /api/tasks` – Remove tarefa
+
+---
+
+## 🧠 Server Side e Server Functions
+
+O projeto utiliza recursos **server-side** do Next.js, como:
+
+- **Server Components**
+- Leitura segura de cookies no servidor
+- Middleware para proteção de rotas
+- Busca de dados no banco diretamente no servidor
+
+Exemplos:
+- Página `/tasks/[id]` utiliza **Server Component** para buscar dados da tarefa no servidor.
+- Página `/profile` demonstra leitura de sessão no servidor.
+
+---
+
+## 🗃 Banco de Dados
+
+- Banco de dados relacional gerenciado com **Prisma ORM**
+- Modelos principais:
+  - `User`
+  - `Task`
+- Relacionamento **1:N** (um usuário possui várias tarefas)
+
+---
+
+## 🌐 Deploy
+
+A aplicação foi publicada em ambiente **serverless** utilizando a plataforma **Vercel**.
+
+- Integração direta com repositório GitHub
+- Variáveis de ambiente configuradas no painel da Vercel
+- Build automático a cada push na branch principal
+
+---
+
+## 📄 Requisitos do Enunciado – Checklist
+
+| Requisito | Implementado |
+|----------|--------------|
+| Rota principal (Home) | ✅ |
+| Rotas dinâmicas | ✅ |
+| Formulário de cadastro | ✅ |
+| Formulário de login | ✅ |
+| Sessão e autenticação | ✅ |
+| Login / Logout | ✅ |
+| API Routes protegidas | ✅ |
+| Server Side / Server Functions | ✅ |
+| Componentização | ✅ |
+| Design responsivo | ✅ |
+| Banco de dados | ✅ |
+| Deploy serverless | ✅ |
+
+---
+
+## ▶️ Como executar o projeto localmente
 
 ```bash
+# instalar dependências
+npm install
+
+# rodar migrações do banco
+npx prisma migrate dev
+
+# iniciar o servidor
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

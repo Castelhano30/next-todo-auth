@@ -27,15 +27,14 @@ export async function POST(req) {
 
     const res = NextResponse.json({ ok: true });
 
-    res.cookies.set({
-      name: "token",
-      value: token,
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24 * 7, // 7 dias
-    });
+    res.cookies.set("token", token, {
+  httpOnly: true,
+  secure: true,          // ✅ força HTTPS
+  sameSite: "none",      // ✅ necessário em produção serverless
+  path: "/",
+  maxAge: 60 * 60 * 24 * 7,
+});
+
 
     return res;
   } catch (e) {

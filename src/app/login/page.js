@@ -36,7 +36,8 @@ export default function LoginPage() {
       return;
     }
 
-    router.push("/tasks");
+    window.location.href = "/tasks";
+
   }
 
   return (

@@ -157,3 +157,20 @@ npx prisma migrate dev
 
 # iniciar o servidor
 npm run dev
+ ```
+
+ ## 📌 Observações Finais
+
+Este projeto foi desenvolvido com foco em:
+
+Simplicidade
+
+Clareza de arquitetura
+
+Segurança
+
+Atendimento integral aos requisitos acadêmicos
+
+## 👤 Autor
+Felipe Castelhano
+Projeto acadêmico – Pós-Graduação em Desenvolvimento Full Stack
